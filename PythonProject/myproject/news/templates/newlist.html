@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<h2>Последние новости</h2>
+<div class="news-list">
+    {% for news in news_list %}
+        <div class="news-item">
+            <img src="{{ news.image.url }}" alt="{{ news.title }}">
+            <h3><a href="{% url 'news-detail' news.id %}">{{ news.title }}</a></h3>
+            <p>{{ news.content|truncatewords:20 }}</p>
+            <p class="meta">Дата публикации: {{ news.publication_date|date:"d M Y" }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
